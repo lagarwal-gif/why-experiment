@@ -22,5 +22,8 @@ Rules:
     systemPrompt,
     `Daily question: "${dailyQuestion}"\nTheir reply: "${originalAnswer}"`
   );
-  return extractJSON<FollowupDecision>(raw);
+  console.log("[FOLLOWUP DEBUG] Raw Claude response:", raw);
+  const result = extractJSON<FollowupDecision>(raw);
+  console.log("[FOLLOWUP DEBUG] Parsed result:", result);
+  return result;
 }

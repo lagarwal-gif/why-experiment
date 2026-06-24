@@ -1,17 +1,22 @@
 import twilio from "twilio";
 
-const client = twilio(
-  process.env.TWILIO_ACCOUNT_SID!,
-  process.env.TWILIO_AUTH_TOKEN!
-);
+let _client: any = null;
+
+function getClient() {
+  if (!_client) {
+    _client = twilio(
+      process.env.TWILIO_ACCOUNT_SID!,
+      process.env.TWILIO_AUTH_TOKEN!
+    );
+  }
+  return _client;
+}
 
 export async function sendSMS(to: string, body: string): Promise<string> {
-  const message = await client.messages.create({
-    body,
-    from: process.env.TWILIO_PHONE_NUMBER!,
-    to,
-  });
-  return message.sid;
+  console.log(`[MOCK SMS] To: ${to}`);
+  console.log(`[MOCK SMS] From: ${process.env.TWILIO_PHONE_NUMBER}`);
+  console.log(`[MOCK SMS] Body: ${body}`);
+  return "mock-sid-" + Date.now();
 }
 
 export function validateTwilioRequest(
