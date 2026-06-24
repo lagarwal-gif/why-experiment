@@ -31,48 +31,61 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 px-4">
-      <div className="w-full max-w-md">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-center mb-2 text-slate-900">
-            Why
-          </h1>
-          <p className="text-center text-slate-600 mb-8">
-            Daily questions to understand yourself better. One thoughtful
-            question per day, via SMS.
-          </p>
+    <div className="min-h-screen flex items-center justify-center bg-black px-4">
+      <div className="w-full max-w-2xl">
+        <div className="space-y-12">
+          {/* Header */}
+          <div className="space-y-6">
+            <h1 className="text-6xl font-black text-white tracking-tighter">
+              Socrates
+            </h1>
 
+            <div className="space-y-4">
+              <p className="text-xl text-gray-300 leading-relaxed">
+                One thoughtful question every day, delivered to your phone.
+              </p>
+              <p className="text-lg text-gray-400 leading-relaxed">
+                We believe true understanding comes from asking the right questions about yourself — your motivations, beliefs, decisions, and the hidden reasons that drive your choices.
+              </p>
+              <p className="text-lg text-gray-400 leading-relaxed">
+                Over time, these daily conversations create a dataset of genuine human reasoning. Your answers help us understand what actually matters to people.
+              </p>
+            </div>
+          </div>
+
+          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="tel"
-              placeholder="Phone number (e.g. 415-555-1234)"
+              placeholder="Your phone number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               disabled={loading}
-              className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900 disabled:opacity-50"
+              className="w-full px-6 py-4 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent disabled:opacity-50 transition text-lg"
             />
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-slate-900 text-white font-semibold py-2 rounded-lg hover:bg-slate-800 disabled:opacity-50 transition"
+              className="w-full bg-white text-black font-bold py-4 rounded-lg hover:bg-gray-100 disabled:opacity-50 transition text-lg"
             >
-              {loading ? "Subscribing..." : "Subscribe"}
+              {loading ? "Subscribing..." : "Start Asking"}
             </button>
           </form>
 
           {status === "success" && (
-            <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-              <p className="text-green-800 text-sm">{message}</p>
+            <div className="p-4 bg-green-900/30 border border-green-700 rounded-lg">
+              <p className="text-green-300 text-sm">{message}</p>
             </div>
           )}
           {status === "error" && (
-            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-800 text-sm">{message}</p>
+            <div className="p-4 bg-red-900/30 border border-red-700 rounded-lg">
+              <p className="text-red-300 text-sm">{message}</p>
             </div>
           )}
 
-          <p className="text-xs text-slate-500 text-center mt-6">
-            By subscribing, you agree to receive SMS messages.
+          {/* Footer */}
+          <p className="text-xs text-gray-600 text-center">
+            By subscribing, you agree to receive SMS messages. Your responses help us build the world's largest database of human reasoning.
           </p>
         </div>
       </div>
